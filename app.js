@@ -10,6 +10,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var config = require('./config/local.js');
+
+//bodyParse
+app.use(bodyParser.urlencoded({extended: true}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,12 +45,11 @@ app.use(function(err, req, res, next) {
 });
 
 //conexion a la base de datos
-mongoose.connect('mongodb://daybilling_user:a3233sdsAS52541rewsdsa@190.210.181.95:27017/daybilling', {
+mongoose.connect(`mongodb://${config.mongo.user}:${config.mongo.password}@${config.mongo.host}:${config.mongo.port}/${config.mongo.database}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-//bodyParse
-app.use(bodyParser.urlencoded({extended: true}))
+
 
 module.exports = app;
