@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -37,5 +39,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//conexion a la base de datos
+mongoose.connect('mongodb://daybilling_user:a3233sdsAS52541rewsdsa@190.210.181.95:27017/daybilling', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+//bodyParse
+app.use(bodyParser.urlencoded({extended: true}))
 
 module.exports = app;
