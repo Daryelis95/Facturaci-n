@@ -1,10 +1,27 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var cliente = new mongoose.Schema({
-   nombre :'string',
-   apellido: 'string',
-   direccion: 'string',
-   telefono: 'string'
+var ventaSchema = new Schema({
+   productos:[{
+     nombre :String,
+     cantidad: Number,
+     precio: Number,
+     fecha: Date
+    }],
+   clientes: [{ 
+       nombre: String,
+       apellido: String ,
+       direccion :String ,
+       telefono : Number
+    }],
+    metodo_pago:[{
+        metodo:String,
+        porcentaje:Number,
+        monto_total:Number
+    }]
 });
+var Venta = mongoose.model('Venta', ventaSchema);
 
-var Venta = mongoose.model('Venta', cliente);
+module.exports = Venta;
+
+
