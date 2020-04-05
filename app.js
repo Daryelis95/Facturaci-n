@@ -8,12 +8,17 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var venta = require('./routes/routes');
+var login = require('./routes/index');
+
+
 
 var app = express();
 var config = require('./config/local.js');
 
 //bodyParse
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json()); //para peticiones de aplication/json
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +54,10 @@ mongoose.connect(`mongodb://${config.mongo.user}:${config.mongo.password}@${conf
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+//Ventas
+app.use('/routes', venta);
+
 
 
 
