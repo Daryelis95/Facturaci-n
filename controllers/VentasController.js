@@ -7,8 +7,8 @@ ventasController.list = function(req, res){
     
     Venta.find({}).exec(function(err, ventas){
         if( err ){ console.log('Error: ', err); return; }
-        console.log("The INDEX");
-        res.render('../views/index', {ventas: ventas} );
+      
+        res.send('../views/index', {ventas: ventas} );
         
     });
     
@@ -18,13 +18,13 @@ ventasController.show = function(req, res){
     Venta.findOne({_id: req.params.id}).exec(function(err, venta){
         if( err ){ console.log('Error: ', err); return; }
         
-        res.render('../views/producto/mostrar', {venta: venta} );
+        res.send( {venta: venta} );
     });
     
 };
 /**++++++++++CREAR DATOS+++++++++++++++ */
 ventasController.create = function(req, res){
-    res.render('../views/producto/create');
+    res.send('../views/producto/create');
 };
 
 ventasController.save = function(req, res){
@@ -34,7 +34,7 @@ ventasController.save = function(req, res){
         if( err ){ console.log('Error: ', err); return; }
         
         console.log("Successfully created a product. :)");
-        res.redirect("/products/show/"+venta._id);
+        res.send("/products/show/"+venta._id);
         
     });
 };
