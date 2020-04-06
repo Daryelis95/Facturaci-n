@@ -32,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//Ventas
+app.use('/routes', venta);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,8 +57,6 @@ mongoose.connect(`mongodb://${config.mongo.user}:${config.mongo.password}@${conf
   useUnifiedTopology: true
 });
 
-//Ventas
-app.use('/routes', venta);
 
 
 

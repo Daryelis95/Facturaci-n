@@ -18,7 +18,7 @@ ventasController.show = function(req, res){
     Venta.findOne({_id: req.params.id}).exec(function(err, venta){
         if( err ){ console.log('Error: ', err); return; }
         
-        res.render('../views/producto/mostrar', {venta: venta} );
+        res.send({venta: venta} );
     });
     
 };
