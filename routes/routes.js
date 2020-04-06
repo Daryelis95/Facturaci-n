@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ventaController = require('../controllers/VentasController.js');
+var ventasController = require('../controllers/VentasController.js');
 //var Venta = require('./mo');
 //Ruta Del Modelo De Venta
 router.get('/', function(err, req, res, next) {
@@ -17,7 +17,7 @@ router.get('/', function(err, req, res, next) {
   
 });
 
-router.get('/producto/mostrar/:id', ventaController.show);
-router.post('/crear', ventaController.create);
+router.get('/producto/mostrar/:id', ventasController.show);
+router.post('/crear', ventasController.create);
 
 module.exports = router;
